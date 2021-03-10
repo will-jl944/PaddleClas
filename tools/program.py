@@ -272,7 +272,7 @@ def run(dataloader,
 
     Returns:
     """
-    print_interval = config.get("print_interval", 10)
+    print_interval = config.get("print_interval", 1)
     use_mix = config.get("use_mix", False) and mode == "train"
 
     metric_list = [

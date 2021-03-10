@@ -132,10 +132,10 @@ def get_file_list(params):
         create_file_list(params)
 
     with open(params['file_list']) as flist:
-        full_lines = [line.strip() for line in flist]
+        full_lines = [line.strip('./') for line in flist]
 
-    if params["mode"] == "train":
-        full_lines = shuffle_lines(full_lines, seed=params['shuffle_seed'])
+    # if params["mode"] == "train":
+    #     full_lines = shuffle_lines(full_lines, seed=params['shuffle_seed'])
 
     return full_lines
 
@@ -214,8 +214,8 @@ class Reader:
 
         use_mix = config.get('use_mix')
         self.params['mode'] = mode
-        self.shuffle = mode == "train"
-
+        # self.shuffle = mode == "train"
+        self.shuffle = False
         self.collate_fn = None
         self.batch_ops = []
         if use_mix and mode == "train":
