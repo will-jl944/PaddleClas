@@ -35,7 +35,7 @@ OPTIMIZER:
 TRAIN:
     batch_size: 1
     num_workers: 1
-    file_list: "./dataset/vegetables_cls/.txt"
+    file_list: "./dataset/vegetables_cls/train_list_shuffle.txt"
     data_dir: "./dataset/vegetables_cls/"
     shuffle_seed: 0
     transforms:
