@@ -9,7 +9,7 @@ total_images: 840
 save_interval: 1
 validate: True
 valid_interval: 1
-epochs: 120
+epochs: 10
 topk: 5
 image_shape: [3, 224, 224]
 
@@ -21,7 +21,7 @@ LEARNING_RATE:
     function: 'Piecewise'          
     params:                   
         lr: 0.025               
-        decay_epochs: [4, 6, 8] 
+        decay_epochs: [4， 6， 8] 
         gamma: 0.1 
 
 OPTIMIZER:
@@ -35,7 +35,7 @@ OPTIMIZER:
 TRAIN:
     batch_size: 1
     num_workers: 1
-    file_list: "./dataset/vegetables_cls/train_list_shuffle.txt"
+    file_list: "./dataset/vegetables_cls/.txt"
     data_dir: "./dataset/vegetables_cls/"
     shuffle_seed: 0
     transforms:
