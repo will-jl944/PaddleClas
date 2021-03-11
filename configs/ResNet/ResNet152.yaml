@@ -2,10 +2,6 @@ mode: 'train'
 ARCHITECTURE:
     name: 'ResNet152'
 
-mode: 'train'
-ARCHITECTURE:
-    name: 'ResNet50'
-
 pretrained_model: ""
 model_save_dir: "./output/"
 classes_num: 6
