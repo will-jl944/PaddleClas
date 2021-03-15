@@ -284,6 +284,10 @@ def run(dataloader,
             'batch_cost', '.5f', postfix=" s,")),
         ("reader_time", AverageMeter(
             'reader_cost', '.5f', postfix=" s,")),
+        ("forward_time", AverageMeter(
+            'forward_cost', '.5f', postfix=" s,")),
+        ("backward_time", AverageMeter(
+            'backward_cost', '.5f', postfix=" s,"))
     ]
     if not use_mix:
         topk_name = 'top{}'.format(config.topk)
@@ -302,13 +306,18 @@ def run(dataloader,
         if idx == 10:
             metric_list["batch_time"].reset()
             metric_list["reader_time"].reset()
+            metric_list["forward_time"].reset()
+            metric_list["backward_time"].reset()
 
         metric_list['reader_time'].update(time.time() - tic)
         batch_size = len(batch[0])
         feeds = create_feeds(batch, use_mix)
+        forward_time_tic = time.time()
         fetchs = create_fetchs(feeds, net, config, mode)
+        metric_list['forward_time'].update(time.time() - forward_time_tic)
         if mode == 'train':
             avg_loss = fetchs['loss']
+            backward_time_tic = time.time()
             avg_loss.backward()
 
             optimizer.step()
@@ -326,6 +335,7 @@ def run(dataloader,
                         lr_scheduler.step()
                 else:
                     lr_scheduler.step()
+            metric_list["backward_time"].update(time.time() - backward_time_tic)
 
         for name, fetch in fetchs.items():
             metric_list[name].update(fetch.numpy()[0], batch_size)
