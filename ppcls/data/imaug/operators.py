@@ -24,6 +24,7 @@ import math
 import random
 import cv2
 import numpy as np
+import time
 
 from .autoaugment import ImageNetPolicy
 
@@ -43,6 +44,7 @@ class DecodeImage(object):
         self.channel_first = channel_first  # only enabled when to_np is True
 
     def __call__(self, img):
+        tic = time.time()
         if six.PY2:
             assert type(img) is str and len(
                 img) > 0, "invalid input 'img' in DecodeImage"
@@ -58,7 +60,7 @@ class DecodeImage(object):
 
         if self.channel_first:
             img = img.transpose((2, 0, 1))
-
+        print("Decode image: {} s".format(time.time() - tic))
         return img
 
 
@@ -80,6 +82,7 @@ class ResizeImage(object):
                 'both 'size' and 'resize_short' are None")
 
     def __call__(self, img):
+        tic = time.time()
         img_h, img_w = img.shape[:2]
         if self.resize_short is not None:
             percent = float(self.resize_short) / min(img_w, img_h)
@@ -89,8 +92,10 @@ class ResizeImage(object):
             w = self.w
             h = self.h
         if self.interpolation is None:
+            print("Resize image: {} s".format(time.time() - tic))
             return cv2.resize(img, (w, h))
         else:
+            print("Resize image: {} s".format(time.time() - tic))
             return cv2.resize(img, (w, h), interpolation=self.interpolation)
 
 
@@ -104,6 +109,7 @@ class CropImage(object):
             self.size = size  # (h, w)
 
     def __call__(self, img):
+        tic = time.time()
         w, h = self.size
         img_h, img_w = img.shape[:2]
         w_start = (img_w - w) // 2
@@ -111,6 +117,8 @@ class CropImage(object):
 
         w_end = w_start + w
         h_end = h_start + h
+
+        print("Crop image: {} s".format(time.time() - tic))
         return img[h_start:h_end, w_start:w_end, :]
 
 
