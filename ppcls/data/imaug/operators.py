@@ -216,11 +216,13 @@ class NormalizeImage(object):
 
     def __call__(self, img):
         from PIL import Image
+        tic = time.time()
         if isinstance(img, Image.Image):
             img = np.array(img)
 
         assert isinstance(img,
                           np.ndarray), "invalid input 'img' in NormalizeImage"
+        print("Normalize image: {} s".format(time.time() - tic))
         return (img.astype('float32') * self.scale - self.mean) / self.std
 
 
