@@ -222,8 +222,9 @@ class NormalizeImage(object):
 
         assert isinstance(img,
                           np.ndarray), "invalid input 'img' in NormalizeImage"
+        img = (img.astype('float32') * self.scale - self.mean) / self.std
         print("Normalize image: {} s".format(time.time() - tic))
-        return (img.astype('float32') * self.scale - self.mean) / self.std
+        return img
 
 
 class ToCHWImage(object):
