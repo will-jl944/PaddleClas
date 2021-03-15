@@ -117,9 +117,9 @@ class CropImage(object):
 
         w_end = w_start + w
         h_end = h_start + h
-
+        img = img[h_start:h_end, w_start:w_end, :]
         print("Crop image: {} s".format(time.time() - tic))
-        return img[h_start:h_end, w_start:w_end, :]
+        return img
 
 
 class RandCropImage(object):
