@@ -14,7 +14,7 @@ topk: 5
 image_shape: [3, 224, 224]
 
 use_mix: False
-use_gpu: False
+use_gpu: True
 ls_epsilon: -1
 
 LEARNING_RATE:
@@ -33,7 +33,7 @@ OPTIMIZER:
         factor: 0.0001
 
 TRAIN:
-    batch_size: 1
+    batch_size: 2
     num_workers: 0
     file_list: "./dataset/vegetables_cls/train_list_shuffle.txt"
     data_dir: "./dataset/vegetables_cls/"
