@@ -277,7 +277,7 @@ def run(dataloader,
 
     metric_list = [
         ("loss", AverageMeter(
-            'loss', '7.5f', postfix=",")),
+            'loss', '7.6f', postfix=",")),
         ("lr", AverageMeter(
             'lr', 'f', postfix=",", need_avg=False)),
         ("batch_time", AverageMeter(
