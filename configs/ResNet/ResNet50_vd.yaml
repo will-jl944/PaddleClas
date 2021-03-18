@@ -2,9 +2,9 @@ mode: 'train'
 ARCHITECTURE:
     name: 'ResNet50_vd'
 
-pretrained_model: ""
+pretrained_model: "./pretrained/ResNet50_vd_10w_pretrained"
 model_save_dir: "./output/"
-classes_num: 1000
+classes_num: 100000
 total_images: 1281167
 save_interval: 1
 validate: True
@@ -12,8 +12,8 @@ valid_interval: 1
 epochs: 200
 topk: 5
 image_shape: [3, 224, 224]
-
-use_mix: True
+use_gpu: False
+use_mix: False
 ls_epsilon: 0.1
 
 LEARNING_RATE:

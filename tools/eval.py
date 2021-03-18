@@ -22,7 +22,7 @@ sys.path.append(__dir__)
 sys.path.append(os.path.abspath(os.path.join(__dir__, '..')))
 
 from ppcls.utils import logger
-from ppcls.utils.save_load import init_model
+from ppcls.utils.save_load import init_model, save_model
 from ppcls.utils.config import get_config
 from ppcls.data import Reader
 import program
@@ -65,13 +65,14 @@ def main(args, return_dict={}):
         net = paddle.DataParallel(net)
 
     init_model(config, net, optimizer=None)
-    valid_dataloader = Reader(config, 'valid', places=place)()
-    net.eval()
-    with paddle.no_grad():
-        top1_acc = program.run(valid_dataloader, config, net, None, None, 0,
-                               'valid')
-    return_dict["top1_acc"] = top1_acc
-    return top1_acc
+    save_model(net, None, model_path='./pretrained/10w/', epoch_id=0, prefix='ppcls')
+    # valid_dataloader = Reader(config, 'valid', places=place)()
+    # net.eval()
+    # with paddle.no_grad():
+    #     top1_acc = program.run(valid_dataloader, config, net, None, None, 0,
+    #                            'valid')
+    # return_dict["top1_acc"] = top1_acc
+    # return top1_acc
 
 
 if __name__ == '__main__':

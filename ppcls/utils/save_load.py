@@ -159,5 +159,5 @@ def save_model(net, optimizer, model_path, epoch_id, prefix='ppcls'):
     _save_student_model(net, model_prefix)
 
     paddle.save(net.state_dict(), model_prefix + ".pdparams")
-    paddle.save(optimizer.state_dict(), model_prefix + ".pdopt")
+    # paddle.save(optimizer.state_dict(), model_prefix + ".pdopt")
     logger.info("Already save model in {}".format(model_path))
