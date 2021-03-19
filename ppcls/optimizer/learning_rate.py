@@ -39,6 +39,8 @@ class Cosine(CosineAnnealingDecay):
     """
 
     def __init__(self, lr, step_each_epoch, epochs, **kwargs):
+        print('Pass to CosineAnnealingDecay')
+        print('lr: {}, T_max: {}'.format(lr, step_each_epoch * epochs))
         super(Cosine, self).__init__(
             learning_rate=lr,
             T_max=step_each_epoch * epochs, )
@@ -86,7 +88,8 @@ class CosineWarmup(LinearWarmup):
         start_lr = 0.0
         end_lr = lr
         lr_sch = Cosine(lr, step_each_epoch, epochs - warmup_epoch)
-
+        print('Pass to LinearWarmup: ')
+        print('warmup_steps: {}, start_lr: {}, end_lr : {}'.format(warmup_step, start_lr, end_lr))
         super(CosineWarmup, self).__init__(
             learning_rate=lr_sch,
             warmup_steps=warmup_step,
