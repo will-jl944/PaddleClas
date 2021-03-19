@@ -29,8 +29,8 @@ OPTIMIZER:
         factor: 0.00002
 
 TRAIN:
-    batch_size: 64
-    num_workers: 4
+    batch_size: 1
+    num_workers: 0
     file_list: "./dataset/vegetables_cls/train_list_shuffle.txt"
     data_dir: "./dataset/vegetables_cls/"
     shuffle_seed: 0
@@ -58,8 +58,8 @@ TRAIN:
 
 
 VALID:
-    batch_size: 64
-    num_workers: 4
+    batch_size: 1
+    num_workers: 0
     file_list: "./dataset/ILSVRC2012/val_list.txt"
     data_dir: "./dataset/ILSVRC2012/"
     shuffle_seed: 0
