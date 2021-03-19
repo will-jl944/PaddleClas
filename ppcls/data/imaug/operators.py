@@ -45,7 +45,6 @@ class DecodeImage(object):
 
     def __call__(self, img):
         # tic = time.time()
-        print('Origin image: ', np.mean(img))
         if six.PY2:
             assert type(img) is str and len(
                 img) > 0, "invalid input 'img' in DecodeImage"
