@@ -30,7 +30,7 @@ OPTIMIZER:
         momentum: 0.9
     regularizer:
         function: 'L2'
-        factor: 0.000070
+        factor: 0.0001
 
 TRAIN:
     batch_size: 1
