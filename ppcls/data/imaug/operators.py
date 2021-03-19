@@ -45,6 +45,7 @@ class DecodeImage(object):
 
     def __call__(self, img):
         # tic = time.time()
+        print('Origin image: ', np.mean(img))
         if six.PY2:
             assert type(img) is str and len(
                 img) > 0, "invalid input 'img' in DecodeImage"
@@ -61,6 +62,7 @@ class DecodeImage(object):
         if self.channel_first:
             img = img.transpose((2, 0, 1))
         # print("Decode image: {} s".format(time.time() - tic))
+        print('After decode: ', np.mean(img))
         return img
 
 
@@ -93,10 +95,12 @@ class ResizeImage(object):
             h = self.h
         if self.interpolation is None:
             # print("Resize image: {} s".format(time.time() - tic))
-            return cv2.resize(img, (w, h))
+            img = cv2.resize(img, (w, h))
         else:
             # print("Resize image: {} s".format(time.time() - tic))
-            return cv2.resize(img, (w, h), interpolation=self.interpolation)
+            img = cv2.resize(img, (w, h), interpolation=self.interpolation)
+        print('After resize: ', np.mean(img))
+        return img
 
 
 class CropImage(object):
@@ -118,7 +122,8 @@ class CropImage(object):
         w_end = w_start + w
         h_end = h_start + h
         img = img[h_start:h_end, w_start:w_end, :]
-        print("Crop image: {} s".format(time.time() - tic))
+        # print("Crop image: {} s".format(time.time() - tic))
+        print('After Crop: ', img)
         return img
 
 
