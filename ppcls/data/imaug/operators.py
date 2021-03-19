@@ -122,7 +122,7 @@ class CropImage(object):
         h_end = h_start + h
         img = img[h_start:h_end, w_start:w_end, :]
         # print("Crop image: {} s".format(time.time() - tic))
-        print('After Crop: ', img)
+        print('After Crop: ', np.mean(img))
         return img
 
 
