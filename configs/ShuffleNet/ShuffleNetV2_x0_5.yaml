@@ -15,7 +15,7 @@ image_shape: [3, 224, 224]
 
 LEARNING_RATE:
     function: 'CosineWarmup'
-    params:
+    params
         lr: 0.5
         warmup_epoch: 5
 
