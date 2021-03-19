@@ -4,13 +4,13 @@ ARCHITECTURE:
 
 pretrained_model: ""
 model_save_dir: "./output/"
-classes_num: 1000
-total_images: 1281167
+classes_num: 6
+total_images: 840
 save_interval: 1
-ls_epsilon: 0.1
+ls_epsilon: -1
 validate: True
 valid_interval: 1
-epochs: 360
+epochs: 10
 topk: 5
 image_shape: [3, 224, 224]
 
@@ -29,20 +29,24 @@ OPTIMIZER:
         factor: 0.00002
 
 TRAIN:
-    batch_size: 2048
+    batch_size: 64
     num_workers: 4
-    file_list: "./dataset/ILSVRC2012/train_list.txt"
-    data_dir: "./dataset/ILSVRC2012/"
+    file_list: "./dataset/vegetables_cls/train_list_shuffle.txt"
+    data_dir: "./dataset/vegetables_cls/"
     shuffle_seed: 0
     transforms:
         - DecodeImage:
             to_rgb: True
             to_np: False
             channel_first: False
-        - RandCropImage:
+        - ResizeImage:
+            resize_short: 256
+        - CropImage:
             size: 224
-        - RandFlipImage:
-            flip_code: 1
+        # - RandCropImage:
+        #     size: 224
+        # - RandFlipImage:
+        #     flip_code: 1
         - AutoAugment:
         - NormalizeImage:
             scale: 1./255.
@@ -54,7 +58,7 @@ TRAIN:
 
 
 VALID:
-    batch_size: 1024
+    batch_size: 64
     num_workers: 4
     file_list: "./dataset/ILSVRC2012/val_list.txt"
     data_dir: "./dataset/ILSVRC2012/"
