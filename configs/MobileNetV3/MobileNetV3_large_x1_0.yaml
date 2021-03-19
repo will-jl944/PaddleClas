@@ -60,8 +60,8 @@ TRAIN:
 VALID:
     batch_size: 1
     num_workers: 0
-    file_list: "./dataset/ILSVRC2012/val_list.txt"
-    data_dir: "./dataset/ILSVRC2012/"
+    file_list: "./dataset/vegetables_cls/val_list.txt"
+    data_dir: "./dataset/vegetables_cls/"
     shuffle_seed: 0
     transforms:
         - DecodeImage:
