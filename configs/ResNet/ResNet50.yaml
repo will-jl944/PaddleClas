@@ -1,6 +1,11 @@
 mode: 'train'
+# ARCHITECTURE:
+#     name: 'ResNet50'
+
 ARCHITECTURE:
-    name: 'ResNet50'
+    name: 'ResNet50_vd'
+    params:
+        lr_mult_list: [0.1, 0.1, 0.2, 0.2, 0.3]
 
 pretrained_model: ""
 model_save_dir: "./output/"
