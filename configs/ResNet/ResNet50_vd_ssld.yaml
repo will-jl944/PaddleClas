@@ -3,7 +3,7 @@ ARCHITECTURE:
     name: 'ResNet50_vd'
     params:
         lr_mult_list: [0.1, 0.1, 0.2, 0.2, 0.3]
-pretrained_model: "../PaddleX/output/ShuffleNetV2_x1_0/best_model/model"
+pretrained_model: ""
 model_save_dir: "./output/"
 classes_num: 6
 total_images: 840
