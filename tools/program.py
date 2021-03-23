@@ -183,6 +183,7 @@ def create_fetchs(feeds, net, config, mode="train"):
     use_distillation = config.get('use_distillation')
 
     out = net(feeds["image"])
+    print('net out: ', out.numpy().mean())
 
     fetchs = OrderedDict()
     fetchs['loss'] = create_loss(feeds, out, architecture, classes_num,
